@@ -1,3 +1,3 @@
-# chat_app
+# recipes app
 
 A new Flutter project.
