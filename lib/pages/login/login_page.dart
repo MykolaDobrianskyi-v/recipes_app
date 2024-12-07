@@ -19,9 +19,7 @@ class LoginPage extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 30,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -30,47 +28,80 @@ class LoginPage extends StatelessWidget {
                     style: TextStyles.introTextStyle,
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
+                  const SizedBox(height: 50),
                   const Text(
                     TextConstants.loginEmailText,
                     style: TextStyles.textFieldStyle,
                   ),
-                  const SizedBox(
-                    height: 8,
+                  const SizedBox(height: 8),
+                  BlocBuilder<LoginBloc, LoginState>(
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextField(
+                            obscureText: false,
+                            hintText: TextConstants.email,
+                            onChange: (value) {
+                              context
+                                  .read<LoginBloc>()
+                                  .add(OnEmailChanged(email: value));
+                            },
+                          ),
+                          if (!state.isEmailValid)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: Text(
+                                "Invalid email format",
+                                style: TextStyles.errorTextStyle,
+                              ),
+                            ),
+                        ],
+                      );
+                    },
                   ),
-                  CustomTextField(
-                      obscureText: false,
-                      hintText: TextConstants.email,
-                      onChange: (value) {
-                        context
-                            .read<LoginBloc>()
-                            .add(OnEmailChanged(email: value));
-                      }),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   const Text(
                     TextConstants.enterPassword,
                     style: TextStyles.textFieldStyle,
                   ),
-                  CustomTextField(
-                    obscureText: true,
-                    hintText: TextConstants.password,
-                    onChange: (value) {
-                      context
-                          .read<LoginBloc>()
-                          .add(OnPasswordChanged(password: value));
+                  BlocBuilder<LoginBloc, LoginState>(
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextField(
+                            obscureText: true,
+                            hintText: TextConstants.password,
+                            onChange: (value) {
+                              context
+                                  .read<LoginBloc>()
+                                  .add(OnPasswordChanged(password: value));
+                            },
+                          ),
+                          if (!state.isPasswordValid)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: Text(
+                                "Password must be at least 6 characters",
+                                style: TextStyles.errorTextStyle,
+                              ),
+                            ),
+                        ],
+                      );
                     },
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  CustomButtonWidget(
-                    data: TextConstants.login,
-                    onPressed: () {
-                      context.read<LoginBloc>().add(LoginSubmitted());
+                  const SizedBox(height: 40),
+                  BlocBuilder<LoginBloc, LoginState>(
+                    builder: (context, state) {
+                      return CustomButtonWidget(
+                        data: TextConstants.login,
+                        onPressed: state.isEmailValid && state.isPasswordValid
+                            ? () {
+                                context.read<LoginBloc>().add(LoginSubmitted());
+                              }
+                            : null,
+                      );
                     },
                   ),
                   GestureDetector(
@@ -81,10 +112,11 @@ class LoginPage extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       'Create account',
+                      textAlign: TextAlign.center,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
