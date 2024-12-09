@@ -18,9 +18,7 @@ class RegistrationPage extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 30,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -29,49 +27,82 @@ class RegistrationPage extends StatelessWidget {
                     style: TextStyles.introTextStyle,
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
+                  const SizedBox(height: 50),
                   const Text(
                     TextConstants.loginEmailText,
                     style: TextStyles.textFieldStyle,
                   ),
-                  const SizedBox(
-                    height: 8,
+                  const SizedBox(height: 8),
+                  BlocBuilder<RegistrationBloc, RegistrationState>(
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextField(
+                            obscureText: false,
+                            hintText: TextConstants.email,
+                            onChange: (value) {
+                              context
+                                  .read<RegistrationBloc>()
+                                  .add(OnEmailChanged(email: value));
+                            },
+                          ),
+                          if (!state.isEmailValid)
+                            const Padding(
+                              padding: EdgeInsets.only(top: 8),
+                              child: Text(
+                                "Invalid email format",
+                                style: TextStyles.errorTextStyle,
+                              ),
+                            ),
+                        ],
+                      );
+                    },
                   ),
-                  CustomTextField(
-                      obscureText: false,
-                      hintText: TextConstants.email,
-                      onChange: (value) {
-                        context
-                            .read<RegistrationBloc>()
-                            .add(OnEmailChanged(email: value));
-                      }),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   const Text(
                     TextConstants.enterPassword,
                     style: TextStyles.textFieldStyle,
                   ),
-                  CustomTextField(
-                    obscureText: true,
-                    hintText: TextConstants.password,
-                    onChange: (value) {
-                      context
-                          .read<RegistrationBloc>()
-                          .add(OnPasswordChanged(password: value));
+                  BlocBuilder<RegistrationBloc, RegistrationState>(
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextField(
+                            obscureText: true,
+                            hintText: TextConstants.password,
+                            onChange: (value) {
+                              context
+                                  .read<RegistrationBloc>()
+                                  .add(OnPasswordChanged(password: value));
+                            },
+                          ),
+                          if (!state.isPasswordValid)
+                            const Padding(
+                              padding: EdgeInsets.only(top: 8),
+                              child: Text(
+                                "Password must be at least 6 characters",
+                                style: TextStyles.errorTextStyle,
+                              ),
+                            ),
+                        ],
+                      );
                     },
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  CustomButtonWidget(
-                    data: TextConstants.login,
-                    onPressed: () {
-                      context
-                          .read<RegistrationBloc>()
-                          .add(RegistrationSubmitted());
+                  const SizedBox(height: 40),
+                  BlocBuilder<RegistrationBloc, RegistrationState>(
+                    builder: (context, state) {
+                      return CustomButtonWidget(
+                        data: TextConstants.login,
+                        onPressed: state.isEmailValid && state.isPasswordValid
+                            ? () {
+                                context
+                                    .read<RegistrationBloc>()
+                                    .add(RegistrationSubmitted());
+                              }
+                            : null,
+                      );
                     },
                   ),
                 ],
