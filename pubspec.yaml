@@ -21,3 +21,19 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Itim
+      fonts:
+        - asset: assets/fonts/Itim-Regular.ttf
+  assets:
+    - assets/images/ingredients.png
+    - assets/images/recipe.png
+    - assets/images/spices.png
+    - assets/images/cereals.png
+    - assets/images/eggs.png
+    - assets/images/fruit.png
+    - assets/images/meat.png
+    - assets/images/milk.png
+    - assets/images/seafood.png
+    - assets/images/sugar.png
+    - assets/images/vegetable.png

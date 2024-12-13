@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/home/home_page.dart';
 import 'package:chat_app/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,9 +18,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'Itim'),
       routes: {
-        '/': (context) => const LoginPage(),
-        // 'login': (context) => LoginPage()
+        '/': (context) => const HomePage(),
+        'login': (context) => const LoginPage()
       },
     );
   }

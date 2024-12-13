@@ -49,10 +49,10 @@ class LoginPage extends StatelessWidget {
                             },
                           ),
                           if (!state.isEmailValid)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 8),
                               child: Text(
-                                "Invalid email format",
+                                TextConstants.invalidEmailFormat,
                                 style: TextStyles.errorTextStyle,
                               ),
                             ),
@@ -80,10 +80,10 @@ class LoginPage extends StatelessWidget {
                             },
                           ),
                           if (!state.isPasswordValid)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 8),
                               child: Text(
-                                "Password must be at least 6 characters",
+                                TextConstants.invalidPasswordFormat,
                                 style: TextStyles.errorTextStyle,
                               ),
                             ),
@@ -113,7 +113,7 @@ class LoginPage extends StatelessWidget {
                       );
                     },
                     child: const Text(
-                      'Create account',
+                      TextConstants.createAccount,
                       textAlign: TextAlign.center,
                     ),
                   ),

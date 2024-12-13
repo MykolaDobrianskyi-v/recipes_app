@@ -16,4 +16,9 @@ class TextStyles {
     color: Colors.red,
     fontSize: 12,
   );
+  static const TextStyle textStyle16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
 }
