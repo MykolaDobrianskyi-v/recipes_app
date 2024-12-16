@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatelessWidget {
+  static const String routeName = '/login';
+  static Widget Function(BuildContext) pageBuilder = (_) => const LoginPage();
   const LoginPage({super.key});
 
   @override
@@ -106,10 +108,8 @@ class LoginPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const RegistrationPage(),
-                        ),
+                      Navigator.of(context).pushNamed(
+                        RegistrationPage.routeName,
                       );
                     },
                     child: const Text(

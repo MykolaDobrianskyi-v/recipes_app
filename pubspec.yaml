@@ -13,6 +13,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   equatable: ^2.0.7
   firebase_auth: ^5.3.3
+  flutter_svg: ^2.0.16
 
 dev_dependencies:
   flutter_test:
@@ -26,14 +27,14 @@ flutter:
       fonts:
         - asset: assets/fonts/Itim-Regular.ttf
   assets:
-    - assets/images/ingredients.png
-    - assets/images/recipe.png
-    - assets/images/spices.png
-    - assets/images/cereals.png
-    - assets/images/eggs.png
-    - assets/images/fruit.png
-    - assets/images/meat.png
-    - assets/images/milk.png
-    - assets/images/seafood.png
-    - assets/images/sugar.png
-    - assets/images/vegetable.png
+    - assets/images/ingredients.svg
+    - assets/images/recipes.svg
+    - assets/images/spices.svg
+    - assets/images/cereals.svg
+    - assets/images/other.svg
+    - assets/images/fruits.svg
+    - assets/images/meat.svg
+    - assets/images/dairy.svg
+    - assets/images/seafood.svg
+    - assets/images/sugar.svg
+    - assets/images/vegetables.svg

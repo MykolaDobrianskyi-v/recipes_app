@@ -1,5 +1,6 @@
 import 'package:chat_app/pages/home/home_page.dart';
 import 'package:chat_app/pages/login/login_page.dart';
+import 'package:chat_app/pages/registration/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -20,8 +21,9 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Itim'),
       routes: {
-        '/': (context) => const HomePage(),
-        'login': (context) => const LoginPage()
+        HomePage.routeName: HomePage.pageBuilder,
+        LoginPage.routeName: LoginPage.pageBuilder,
+        RegistrationPage.routeName: RegistrationPage.pageBuilder,
       },
     );
   }
