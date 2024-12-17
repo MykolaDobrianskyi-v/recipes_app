@@ -1,12 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/styles/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class IngredientsContainer extends StatelessWidget {
   const IngredientsContainer(
-      {super.key, required this.imagePath, required this.containerText});
+      {super.key, required this.imageUrl, required this.containerText});
 
-  final String imagePath;
+  final String imageUrl;
   final String containerText;
 
   @override
@@ -22,8 +22,8 @@ class IngredientsContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            imagePath,
+          CachedNetworkImage(
+            imageUrl: imageUrl,
             width: 100,
             height: 80,
           ),
