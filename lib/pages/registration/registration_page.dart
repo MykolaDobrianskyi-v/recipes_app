@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegistrationPage extends StatelessWidget {
+  static const String routeName = '/registration';
+  static Widget Function(BuildContext) pageBuilder =
+      (_) => const RegistrationPage();
   const RegistrationPage({super.key});
 
   @override
@@ -51,7 +54,7 @@ class RegistrationPage extends StatelessWidget {
                             const Padding(
                               padding: EdgeInsets.only(top: 8),
                               child: Text(
-                                "Invalid email format",
+                                TextConstants.invalidEmailFormat,
                                 style: TextStyles.errorTextStyle,
                               ),
                             ),
@@ -82,7 +85,7 @@ class RegistrationPage extends StatelessWidget {
                             const Padding(
                               padding: EdgeInsets.only(top: 8),
                               child: Text(
-                                "Password must be at least 6 characters",
+                                TextConstants.invalidPasswordFormat,
                                 style: TextStyles.errorTextStyle,
                               ),
                             ),
