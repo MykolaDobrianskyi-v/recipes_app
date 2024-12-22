@@ -2,6 +2,7 @@ import 'package:chat_app/constants/text_data/text_constants.dart';
 import 'package:chat_app/data_providers/categories_provider.dart';
 import 'package:chat_app/data_providers/storage_provider.dart';
 import 'package:chat_app/pages/home/bloc/home_bloc.dart';
+import 'package:chat_app/pages/ingredients/ingredients_page.dart';
 import 'package:chat_app/repositories/ingredients_categories_repository.dart';
 import 'package:chat_app/widgets/ingredients_container.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -33,29 +34,36 @@ class HomePage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: const Color(0xFFE37070),
         ),
-        bottomNavigationBar: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            return BottomNavigationBar(
-                backgroundColor: const Color(0xFFCA9F9F),
-                selectedItemColor: const Color(0xFFE37070),
-                currentIndex: state.selectedIndex ?? 0,
-                onTap: (index) => context
-                    .read<HomeBloc>()
-                    .add(OnItemTapped(selectedIndex: index)),
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.abc),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(icon: Icon(Icons.abc), label: ''),
-                  BottomNavigationBarItem(icon: Icon(Icons.abc), label: ''),
-                ]);
-          },
-        ),
+        // bottomNavigationBar: BlocBuilder<HomeBloc, HomeState>(
+        //   builder: (context, state) {
+        //     return BottomNavigationBar(
+        //         backgroundColor: const Color(0xFFCA9F9F),
+        //         selectedItemColor: const Color(0xFFE37070),
+        //         currentIndex: state.selectedIndex ?? 0,
+        //         onTap: (index) => context
+        //             .read<HomeBloc>()
+        //             .add(OnItemTapped(selectedIndex: index)),
+        //         items: const [
+        //           BottomNavigationBarItem(
+        //             icon: Icon(Icons.abc),
+        //             label: '',
+        //           ),
+        //           BottomNavigationBarItem(icon: Icon(Icons.abc), label: ''),
+        //           BottomNavigationBarItem(icon: Icon(Icons.abc), label: ''),
+        //         ]);
+        //   },
+        // ),
         body: Padding(
           padding: const EdgeInsets.only(top: 100),
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
+              if (state.isLoading ?? false) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Color(0xFFCA9F9F),
+                  ),
+                );
+              }
               return GridView.count(
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
@@ -65,6 +73,11 @@ class HomePage extends StatelessWidget {
                     IngredientsContainer(
                       imageUrl: category.imageUrl,
                       containerText: category.label,
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          IngredientsPage.routeName,
+                        );
+                      },
                     ),
                 ],
               );

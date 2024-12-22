@@ -4,34 +4,41 @@ import 'package:flutter/material.dart';
 
 class IngredientsContainer extends StatelessWidget {
   const IngredientsContainer(
-      {super.key, required this.imageUrl, required this.containerText});
+      {super.key,
+      required this.imageUrl,
+      required this.containerText,
+      this.onTap});
 
   final String imageUrl;
   final String containerText;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-      ),
-      decoration: BoxDecoration(
-        color: const Color(0xFFD3B5B5),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CachedNetworkImage(
-            imageUrl: imageUrl,
-            width: 100,
-            height: 80,
-          ),
-          Text(
-            containerText,
-            style: TextStyles.textStyle16,
-          ),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+        ),
+        decoration: BoxDecoration(
+          color: const Color(0xFFD3B5B5),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CachedNetworkImage(
+              imageUrl: imageUrl,
+              width: 100,
+              height: 80,
+            ),
+            Text(
+              containerText,
+              style: TextStyles.textStyle16,
+            ),
+          ],
+        ),
       ),
     );
   }

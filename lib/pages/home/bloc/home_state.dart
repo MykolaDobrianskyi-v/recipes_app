@@ -5,14 +5,30 @@ class HomeState extends Equatable {
 
   final List<IngredientCategory> ingredientCategory;
 
-  const HomeState({this.ingredientCategory = const [], this.selectedIndex});
-  HomeState copyWith(
-      {int? selectedIndex, List<IngredientCategory>? ingredientCategory}) {
+  final bool? isLoading;
+
+  const HomeState({
+    this.ingredientCategory = const [],
+    this.selectedIndex,
+    this.isLoading = false,
+  });
+
+  HomeState copyWith({
+    int? selectedIndex,
+    List<IngredientCategory>? ingredientCategory,
+    bool? isLoading,
+  }) {
     return HomeState(
-        selectedIndex: selectedIndex ?? this.selectedIndex,
-        ingredientCategory: ingredientCategory ?? this.ingredientCategory);
+      selectedIndex: selectedIndex ?? this.selectedIndex,
+      ingredientCategory: ingredientCategory ?? this.ingredientCategory,
+      isLoading: isLoading ?? this.isLoading,
+    );
   }
 
   @override
-  List<Object?> get props => [selectedIndex, ingredientCategory];
+  List<Object?> get props => [
+        selectedIndex,
+        ingredientCategory,
+        isLoading,
+      ];
 }
