@@ -18,45 +18,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeState(selectedIndex: event.selectedIndex));
   }
 
-  void _onInit(OnInit event, Emitter<HomeState> emit) {
-    final List<IngredientCategory> ingredientCategory = [
-      const IngredientCategory(
-        imagePath: ImagePath.vegetableImagePath,
-        label: TextConstants.vegetables,
+  void _onInit(OnInit event, Emitter<HomeState> emit) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
       ),
-      const IngredientCategory(
-        imagePath: ImagePath.spicesImagePath,
-        label: TextConstants.spices,
+    );
+    final categories =
+        await _ingredientsCategoriesRepository.getIngredientCategories();
+
+    emit(
+      state.copyWith(
+        ingredientCategory: categories,
+        isLoading: false,
       ),
-      const IngredientCategory(
-        imagePath: ImagePath.cerealsImagePath,
-        label: TextConstants.cereals,
-      ),
-      const IngredientCategory(
-        imagePath: ImagePath.meatImagePath,
-        label: TextConstants.meat,
-      ),
-      const IngredientCategory(
-        imagePath: ImagePath.fruitImagePath,
-        label: TextConstants.fruits,
-      ),
-      const IngredientCategory(
-        imagePath: ImagePath.seafoodImagePath,
-        label: TextConstants.seafood,
-      ),
-      const IngredientCategory(
-        imagePath: ImagePath.sugarImagePath,
-        label: TextConstants.sugar,
-      ),
-      const IngredientCategory(
-        imagePath: ImagePath.milImagePath,
-        label: TextConstants.dairy,
-      ),
-      const IngredientCategory(
-        imagePath: ImagePath.eggsImagePath,
-        label: TextConstants.other,
-      ),
-    ];
-    emit(state.copyWith(ingredientCategory: ingredientCategory));
+    );
   }
 }
