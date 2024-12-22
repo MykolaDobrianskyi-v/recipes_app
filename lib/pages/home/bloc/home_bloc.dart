@@ -1,19 +1,14 @@
 import 'package:bloc/bloc.dart';
-
+import 'package:chat_app/constants/images_data/images.dart';
+import 'package:chat_app/constants/text_data/text_constants.dart';
 import 'package:chat_app/models/ingredient_category.dart';
-
-import 'package:chat_app/repositories/ingredients_categories_repository.dart';
 import 'package:equatable/equatable.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final IngredientsCategoriesRepository _ingredientsCategoriesRepository;
-  HomeBloc({
-    required IngredientsCategoriesRepository ingredientsCategoriesRepository,
-  })  : _ingredientsCategoriesRepository = ingredientsCategoriesRepository,
-        super(const HomeState()) {
+  HomeBloc() : super(const HomeState()) {
     on<OnInit>(_onInit);
     on<OnItemTapped>(_onItemTapped);
 

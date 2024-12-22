@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/styles/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class IngredientsContainer extends StatelessWidget {
   const IngredientsContainer(
@@ -9,7 +9,7 @@ class IngredientsContainer extends StatelessWidget {
       required this.containerText,
       this.onTap});
 
-  final String imageUrl;
+  final String imagePath;
   final String containerText;
   final Function()? onTap;
 

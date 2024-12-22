@@ -1,12 +1,8 @@
 import 'package:chat_app/constants/text_data/text_constants.dart';
-import 'package:chat_app/data_providers/categories_provider.dart';
-import 'package:chat_app/data_providers/storage_provider.dart';
 import 'package:chat_app/pages/home/bloc/home_bloc.dart';
 import 'package:chat_app/pages/ingredients/ingredients_page.dart';
 import 'package:chat_app/repositories/ingredients_categories_repository.dart';
 import 'package:chat_app/widgets/ingredients_container.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,16 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeBloc(
-        ingredientsCategoriesRepository: IngredientsCategoriesRepository(
-          storageProvider: StorageProvider(
-            storage: FirebaseStorage.instance,
-          ),
-          categoriesProvider: CategoriesProvider(
-            firestore: FirebaseFirestore.instance,
-          ),
-        ),
-      ),
+      create: (context) => HomeBloc(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text(TextConstants.ingredients),
@@ -54,7 +41,7 @@ class HomePage extends StatelessWidget {
         //   },
         // ),
         body: Padding(
-          padding: const EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.only(top: 170),
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
               if (state.isLoading ?? false) {
@@ -81,6 +68,7 @@ class HomePage extends StatelessWidget {
                     ),
                 ],
               );
+
             },
           ),
         ),
