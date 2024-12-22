@@ -24,9 +24,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   void _onInit(OnInit event, Emitter<HomeState> emit) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
+    );
     final categories =
         await _ingredientsCategoriesRepository.getIngredientCategories();
 
-    emit(state.copyWith(ingredientCategory: categories));
+    emit(
+      state.copyWith(
+        ingredientCategory: categories,
+        isLoading: false,
+      ),
+    );
   }
 }

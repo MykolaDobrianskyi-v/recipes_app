@@ -1,4 +1,5 @@
 import 'package:chat_app/pages/home/home_page.dart';
+import 'package:chat_app/pages/ingredients/ingredients_page.dart';
 import 'package:chat_app/pages/login/login_page.dart';
 import 'package:chat_app/pages/registration/registration_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MainApp extends StatelessWidget {
         HomePage.routeName: HomePage.pageBuilder,
         LoginPage.routeName: LoginPage.pageBuilder,
         RegistrationPage.routeName: RegistrationPage.pageBuilder,
+        IngredientsPage.routeName: IngredientsPage.pageBuilder,
       },
     );
   }
