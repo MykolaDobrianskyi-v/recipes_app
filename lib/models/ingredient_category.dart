@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class IngredientCategory extends Equatable {
-  final String imagePath;
+  final String imageUrl;
   final String label;
 
-  const IngredientCategory({required this.imagePath, required this.label});
+  const IngredientCategory({required this.imageUrl, required this.label});
 
   @override
-  List<Object?> get props => [imagePath, label];
+  List<Object?> get props => [imageUrl, label];
 }
