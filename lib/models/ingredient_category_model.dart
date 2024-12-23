@@ -6,7 +6,10 @@ class IngredientCategoryModel extends Equatable {
 
   const IngredientCategoryModel({required this.imageUrl, required this.label});
   IngredientCategoryModel.fromJson(Map<String, dynamic> json)
-      : this(imageUrl: json['imageUrl'], label: json['label']);
+      : this(
+          imageUrl: json['imageUrl'],
+          label: json['label'],
+        );
 
   @override
   List<Object?> get props => [imageUrl, label];
