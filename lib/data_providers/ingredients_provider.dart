@@ -1,16 +1,16 @@
-import 'package:chat_app/models/ingredients_model.dart';
+import 'package:chat_app/models/ingredient_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class IngredientProvider {
+class IngredientsProvider {
   final FirebaseFirestore _firestore;
 
-  IngredientProvider({required FirebaseFirestore firestore})
+  IngredientsProvider({required FirebaseFirestore firestore})
       : _firestore = firestore;
 
-  Future<List<IngredientsModel>> getIngredientsList() async {
+  Future<List<IngredientModel>> getIngredientsList() async {
     final snapshot = await _firestore.collection('ingredients').get();
     return snapshot.docs.map((doc) {
-      return IngredientsModel.fromJson(doc.data());
+      return IngredientModel.fromJson(doc.data());
     }).toList();
   }
 }

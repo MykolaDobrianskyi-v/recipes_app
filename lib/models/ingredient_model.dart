@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
 
-class IngredientsModel extends Equatable {
+class IngredientModel extends Equatable {
   final String imageUrl;
   final String label;
 
-  const IngredientsModel({
+  const IngredientModel({
     required this.imageUrl,
     required this.label,
   });
-  IngredientsModel.fromJson(Map<String, dynamic> json)
+  IngredientModel.fromJson(Map<String, dynamic> json)
       : this(
           imageUrl: json['imageUrl'],
           label: json['label'],

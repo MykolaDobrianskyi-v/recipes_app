@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class IngredientsList extends Equatable {
+class Ingredient extends Equatable {
   final String imageUrl;
   final String label;
 
-  const IngredientsList({
+  const Ingredient({
     required this.imageUrl,
     required this.label,
   });
