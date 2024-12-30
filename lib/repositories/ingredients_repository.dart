@@ -19,6 +19,7 @@ class IngredientsRepository {
       return Ingredient(
         imageUrl: await _storageProvider.getImageUrl(element.imageUrl),
         label: element.label,
+        category: element.category,
       );
     });
     return Future.wait(asyncParsedIngredients);

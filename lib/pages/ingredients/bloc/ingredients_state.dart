@@ -1,10 +1,23 @@
 part of 'ingredients_bloc.dart';
 
-sealed class IngredientsState extends Equatable {
-  const IngredientsState();
-  
-  @override
-  List<Object> get props => [];
-}
+class IngredientsState extends Equatable {
+  final List<Ingredient> ingredients;
+  final bool isLoading;
+  const IngredientsState({
+    this.ingredients = const [],
+    this.isLoading = false,
+  });
 
-final class IngredientsInitial extends IngredientsState {}
+  IngredientsState copyWith({
+    List<Ingredient>? ingredients,
+    bool? isLoading,
+  }) {
+    return IngredientsState(
+      ingredients: ingredients ?? this.ingredients,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
+
+  @override
+  List<Object> get props => [ingredients, isLoading];
+}

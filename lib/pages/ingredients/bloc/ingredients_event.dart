@@ -6,3 +6,5 @@ sealed class IngredientsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class OnInit extends IngredientsEvent {}
