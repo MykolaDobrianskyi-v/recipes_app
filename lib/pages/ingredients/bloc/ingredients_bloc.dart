@@ -14,6 +14,8 @@ class IngredientsBloc extends Bloc<IngredientsEvent, IngredientsState> {
         super(const IngredientsState()) {
     on<IngredientsEvent>((event, emit) {});
     on<OnInit>(_onInit);
+
+    add(OnInit());
   }
 
   void _onInit(OnInit event, Emitter<IngredientsState> emit) async {
