@@ -1,8 +1,10 @@
 part of 'ingredients_bloc.dart';
 
-sealed class IngredientsEvent extends Equatable {
+abstract class IngredientsEvent extends Equatable {
   const IngredientsEvent();
 
   @override
   List<Object> get props => [];
 }
+
+class OnInit extends IngredientsEvent {}
