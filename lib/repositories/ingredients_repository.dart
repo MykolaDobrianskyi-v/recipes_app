@@ -24,4 +24,18 @@ class IngredientsRepository {
     });
     return Future.wait(asyncParsedIngredients);
   }
+
+  Future<List<Ingredient>> fetchIngredientsByCategories(String category) async {
+    final ingredients =
+        await _ingredientProvider.fetchIngredientsByCategories(category);
+
+    final asyncParsedIngredients = ingredients.map((element) async {
+      return Ingredient(
+        imageUrl: await _storageProvider.getImageUrl(element.imageUrl),
+        label: element.label,
+        category: element.category,
+      );
+    });
+    return Future.wait(asyncParsedIngredients);
+  }
 }

@@ -76,6 +76,7 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pushNamed(
                           IngredientsPage.routeName,
+                          arguments: category.label,
                         );
                       },
                     ),

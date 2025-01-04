@@ -8,14 +8,16 @@ part 'ingredients_state.dart';
 
 class IngredientsBloc extends Bloc<IngredientsEvent, IngredientsState> {
   final IngredientsRepository _ingredientsRepository;
+
   IngredientsBloc({
+    required String category,
     required IngredientsRepository ingredientsRepository,
   })  : _ingredientsRepository = ingredientsRepository,
         super(const IngredientsState()) {
     on<IngredientsEvent>((event, emit) {});
     on<OnInit>(_onInit);
 
-    add(OnInit());
+    add(OnInit(category: category));
   }
 
   void _onInit(OnInit event, Emitter<IngredientsState> emit) async {
@@ -24,7 +26,8 @@ class IngredientsBloc extends Bloc<IngredientsEvent, IngredientsState> {
         isLoading: true,
       ),
     );
-    final ingredients = await _ingredientsRepository.getIngredientsList();
+    final ingredients = await _ingredientsRepository
+        .fetchIngredientsByCategories(event.category);
     emit(
       state.copyWith(
         ingredients: ingredients,

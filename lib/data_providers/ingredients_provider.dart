@@ -13,4 +13,16 @@ class IngredientsProvider {
       return IngredientModel.fromJson(doc.data());
     }).toList();
   }
+
+  Future<List<IngredientModel>> fetchIngredientsByCategories(
+      String category) async {
+    final snapshot = await _firestore
+        .collection('ingredients')
+        .where('category', isEqualTo: category)
+        .get();
+
+    return snapshot.docs.map((doc) {
+      return IngredientModel.fromJson(doc.data());
+    }).toList();
+  }
 }
