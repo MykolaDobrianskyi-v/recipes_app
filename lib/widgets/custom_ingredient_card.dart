@@ -6,15 +6,14 @@ class CustomIngredientCard extends StatelessWidget {
   final String imagePath;
   final String label;
   final String category;
-  final bool isSelected;
-  final ValueChanged<bool?>? onChanged;
+
+  final Function()? onPressed;
 
   const CustomIngredientCard({
     super.key,
     required this.imagePath,
     required this.label,
-    required this.isSelected,
-    required this.onChanged,
+    required this.onPressed,
     required this.category,
   });
 
@@ -44,9 +43,11 @@ class CustomIngredientCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          Checkbox(
-            value: isSelected,
-            onChanged: onChanged,
+          ElevatedButton(
+            onPressed: onPressed,
+            child: const Icon(
+              Icons.add,
+            ),
           ),
         ],
       ),

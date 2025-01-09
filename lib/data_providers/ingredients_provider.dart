@@ -22,7 +22,19 @@ class IngredientsProvider {
         .get();
 
     return snapshot.docs.map((doc) {
-      return IngredientModel.fromJson(doc.data());
+      final data = {
+        ...doc.data(),
+        'id': doc.id,
+      };
+      return IngredientModel.fromJson(data);
     }).toList();
+  }
+
+  Future<IngredientModel?> fetchIngredientById(String id) async {
+    final snapshot = await _firestore.collection('ingredients').doc(id).get();
+    if (snapshot.exists) {
+      return IngredientModel.fromJson(snapshot.data()!);
+    }
+    return null;
   }
 }
