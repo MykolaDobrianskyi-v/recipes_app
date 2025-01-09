@@ -1,10 +1,12 @@
 import 'package:chat_app/constants/text_data/text_constants.dart';
 import 'package:chat_app/data_providers/ingredients_provider.dart';
 import 'package:chat_app/data_providers/storage_provider.dart';
+import 'package:chat_app/data_providers/user_provider.dart';
 import 'package:chat_app/pages/ingredients/bloc/ingredients_bloc.dart';
 import 'package:chat_app/repositories/ingredients_repository.dart';
 import 'package:chat_app/widgets/custom_ingredient_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +27,9 @@ class IngredientsPage extends StatelessWidget {
           ingredientProvider: IngredientsProvider(
             firestore: FirebaseFirestore.instance,
           ),
+          userProvider: UserProvider(
+              firestore: FirebaseFirestore.instance,
+              auth: FirebaseAuth.instance),
         ),
         category: category,
       ),
@@ -51,8 +56,7 @@ class IngredientsPage extends StatelessWidget {
                     imagePath: ingredient.imageUrl,
                     label: ingredient.label,
                     category: ingredient.category,
-                    isSelected: false,
-                    onChanged: (bool? value) {},
+                    onPressed: null,
                   ),
               ],
             );
