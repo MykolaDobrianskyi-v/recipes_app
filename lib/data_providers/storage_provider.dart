@@ -5,7 +5,7 @@ class StorageProvider {
 
   StorageProvider({required FirebaseStorage storage}) : _storage = storage;
 
-  Future<String> getImageUrl(String imageUrl) async {
+  Future<String> getImageUrl(String? imageUrl) async {
     return await _storage.ref(imageUrl).getDownloadURL();
   }
 }

@@ -3,9 +3,9 @@ import 'package:chat_app/styles/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomIngredientCard extends StatelessWidget {
-  final String imagePath;
-  final String label;
-  final String category;
+  final String? imagePath;
+  final String? label;
+  final String? category;
 
   final Function()? onPressed;
 
@@ -29,7 +29,7 @@ class CustomIngredientCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CachedNetworkImage(
-            imageUrl: imagePath,
+            imageUrl: imagePath!,
             width: 50,
             height: 50,
             fit: BoxFit.cover,
@@ -37,7 +37,7 @@ class CustomIngredientCard extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              label,
+              label!,
               style: TextStyles.textStyle16,
               overflow: TextOverflow.ellipsis,
             ),

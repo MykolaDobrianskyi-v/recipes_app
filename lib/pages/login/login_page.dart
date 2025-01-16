@@ -1,4 +1,5 @@
 import 'package:chat_app/constants/text_data/text_constants.dart';
+import 'package:chat_app/pages/home/home_page.dart';
 import 'package:chat_app/pages/login/bloc/login_bloc.dart';
 import 'package:chat_app/pages/registration/registration_page.dart';
 import 'package:chat_app/styles/text_styles/text_styles.dart';
@@ -101,6 +102,8 @@ class LoginPage extends StatelessWidget {
                         onPressed: state.isEmailValid && state.isPasswordValid
                             ? () {
                                 context.read<LoginBloc>().add(LoginSubmitted());
+                                Navigator.of(context)
+                                    .pushNamed(HomePage.routeName);
                               }
                             : null,
                       );

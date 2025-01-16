@@ -4,6 +4,7 @@ import 'package:chat_app/data_providers/storage_provider.dart';
 import 'package:chat_app/pages/home/bloc/home_bloc.dart';
 import 'package:chat_app/pages/ingredients/ingredients_page.dart';
 import 'package:chat_app/repositories/ingredients_categories_repository.dart';
+import 'package:chat_app/widgets/cart_wrapper_widget.dart';
 import 'package:chat_app/widgets/ingredients_container.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -53,36 +54,39 @@ class HomePage extends StatelessWidget {
         //         ]);
         //   },
         // ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 170),
-          child: BlocBuilder<HomeBloc, HomeState>(
-            builder: (context, state) {
-              if (state.isLoading ?? false) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Color(0xFFCA9F9F),
-                  ),
-                );
-              }
-              return GridView.count(
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                crossAxisCount: 3,
-                children: [
-                  for (final category in state.ingredientCategory)
-                    IngredientsContainer(
-                      imagePath: category.imageUrl,
-                      label: category.label,
-                      onTap: () {
-                        Navigator.of(context).pushNamed(
-                          IngredientsPage.routeName,
-                          arguments: category.label,
-                        );
-                      },
+        body: CartWrapper(
+          onTap: null,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 170),
+            child: BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                if (state.isLoading ?? false) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Color(0xFFCA9F9F),
                     ),
-                ],
-              );
-            },
+                  );
+                }
+                return GridView.count(
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  crossAxisCount: 3,
+                  children: [
+                    for (final category in state.ingredientCategory)
+                      IngredientsContainer(
+                        imagePath: category.imageUrl,
+                        label: category.label,
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            IngredientsPage.routeName,
+                            arguments: category.label,
+                          );
+                        },
+                      ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

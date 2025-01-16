@@ -32,9 +32,10 @@ class IngredientsProvider {
 
   Future<IngredientModel?> fetchIngredientById(String id) async {
     final snapshot = await _firestore.collection('ingredients').doc(id).get();
-    if (snapshot.exists) {
-      return IngredientModel.fromJson(snapshot.data()!);
+    if (!snapshot.exists || snapshot.data() == null) {
+      return null;
     }
-    return null;
+
+    return IngredientModel.fromJson(snapshot.data()!);
   }
 }

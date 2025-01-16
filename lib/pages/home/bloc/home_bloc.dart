@@ -1,11 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:chat_app/data_providers/user_provider.dart';
 
 import 'package:chat_app/models/ingredient_category.dart';
 import 'package:chat_app/repositories/ingredients_categories_repository.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -26,10 +24,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   void _onInit(OnInit event, Emitter<HomeState> emit) async {
-    UserProvider(
-      auth: FirebaseAuth.instance,
-      firestore: FirebaseFirestore.instance,
-    ).addIngredientToList('');
     emit(
       state.copyWith(
         isLoading: true,
