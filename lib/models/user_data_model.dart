@@ -10,8 +10,11 @@ class UserDataModel extends Equatable {
 
   UserDataModel.fromJson(Map<String, dynamic> json)
       : this(
-          selectedIngredientsId: json['selectedIngredientsId'],
+          selectedIngredientsId: json['selectedIngredientsId'] != null
+              ? List<String>.from(json['selectedIngredientsId'])
+              : [],
         );
+
   Map<String, dynamic> toJson() => {
         'selectedIngredientsId': selectedIngredientsId,
       };

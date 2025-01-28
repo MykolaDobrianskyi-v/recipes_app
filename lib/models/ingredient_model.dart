@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class IngredientModel extends Equatable {
-  final String id;
-  final String imageUrl;
-  final String label;
-  final String category;
+  final String? id;
+  final String? imageUrl;
+  final String? label;
+  final String? category;
 
   const IngredientModel({
     required this.id,

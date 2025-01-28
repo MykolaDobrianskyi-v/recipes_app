@@ -24,7 +24,6 @@ class IngredientsBloc extends Bloc<IngredientsEvent, IngredientsState> {
 
     add(OnInit(category: category));
     _init();
-    close();
   }
   late final StreamSubscription streamSubscription;
 
@@ -56,7 +55,6 @@ class IngredientsBloc extends Bloc<IngredientsEvent, IngredientsState> {
     );
     final ingredients = await _ingredientsRepository
         .fetchIngredientsByCategories(event.category);
-
     emit(
       state.copyWith(
         ingredients: ingredients,

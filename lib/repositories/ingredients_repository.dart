@@ -70,7 +70,7 @@ class IngredientsRepository {
     );
   }
 
-  Future<void> addIngredientToList(String id) async {
-    await _userProvider.addIngredientToList(id);
+  Future<void> addIngredientToList(String? id) async {
+    await _userProvider.addIngredientToList(id!);
   }
 }
